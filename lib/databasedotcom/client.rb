@@ -496,7 +496,7 @@ module Databasedotcom
         attrs.keys.each do |key|
           case clazz.field_type(key.to_s)
             when "multipicklist"
-              coerced_attrs[key] = (attrs[key] || []).join(';')
+              coerced_attrs[key] = ([attrs[key]].flatten || []).join(';')
             when "datetime"
               begin
                 attrs[key] = DateTime.parse(attrs[key]) if attrs[key].is_a?(String)
